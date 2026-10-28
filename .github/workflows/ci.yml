@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Validate policies.json
+        run: node scripts/validate.mjs
+      - name: Check README is up to date
+        run: |
+          node scripts/build-readme.mjs
+          git diff --exit-code -- README.md || {
+            echo "::error::README.md is stale. Run 'npm run build' and commit the result."
+            exit 1
+          }
