@@ -16,7 +16,6 @@
     "test": "node scripts/validate.mjs && node scripts/build-readme.mjs --check"
   },
   "devDependencies": {
-    "ajv": "^8.17.1",
-    "ajv-formats": "^3.0.1"
+    "ajv": "^8.17.1"
   }
 }
