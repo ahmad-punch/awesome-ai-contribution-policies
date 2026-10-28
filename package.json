@@ -1,0 +1,22 @@
+{
+  "name": "awesome-ai-contribution-policies",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A machine-readable dataset of how open source projects treat AI-assisted and agent-written contributions.",
+  "license": "MIT AND CC-BY-4.0",
+  "author": "Ahmad Salman Khan",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build": "node scripts/build-readme.mjs",
+    "check-links": "node scripts/check-links.mjs",
+    "test": "node scripts/validate.mjs && node scripts/build-readme.mjs --check"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

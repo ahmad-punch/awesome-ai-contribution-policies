@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ahmad-punch/awesome-ai-contribution-policies/schema/policy.schema.json",
+  "title": "AI contribution policies",
+  "description": "One entry per repository describing how it treats AI-assisted and agent-written contributions.",
+  "type": "array",
+  "items": { "$ref": "#/$defs/policy" },
+  "$defs": {
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$",
+      "description": "YYYY, YYYY-MM or YYYY-MM-DD."
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "repo",
+        "ecosystem",
+        "stance",
+        "agents_allowed",
+        "disclosure_format",
+        "co_author_trailer_for_ai",
+        "gates",
+        "quote",
+        "quote_kind",
+        "source_url",
+        "last_verified"
+      ],
+      "properties": {
+        "project": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60,
+          "description": "Human-readable project name."
+        },
+        "repo": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._-]+)*$",
+          "description": "GitHub owner/name; host/path for other forges; a bare org or host/org when the policy is organisation-wide. Unique key."
+        },
+        "ecosystem": {
+          "enum": [
+            "c-cpp",
+            "go",
+            "java",
+            "javascript-typescript",
+            "python",
+            "ruby",
+            "rust",
+            "zig",
+            "linux-distribution",
+            "foundation",
+            "multi"
+          ]
+        },
+        "stance": {
+          "enum": [
+            "ban",
+            "restricted",
+            "disclose-required",
+            "disclose-encouraged",
+            "neutral",
+            "encouraged",
+            "no-policy"
+          ]
+        },
+        "agents_allowed": {
+          "enum": ["yes", "no", "supervised", "unknown"],
+          "description": "Whether autonomous coding agents may open or author contributions."
+        },
+        "disclosure_format": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "description": "Where and how AI use is declared, or \"none\"."
+        },
+        "co_author_trailer_for_ai": {
+          "enum": ["required", "forbidden", "discouraged", "unspecified"],
+          "description": "Policy on Co-authored-by trailers naming an AI tool."
+        },
+        "gates": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "description": "Process hurdles before a PR is considered (assignment, labels, vouching)."
+        },
+        "pr_creation_policy": {
+          "enum": ["all", "collaborators_only"],
+          "description": "GitHub repository setting pull_request_creation_policy, where measured."
+        },
+        "sanctions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 100 }
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "quote_kind": {
+          "enum": ["verbatim", "summary"],
+          "description": "verbatim: copied from the source. summary: our paraphrase."
+        },
+        "source_url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "policy_date": { "$ref": "#/$defs/date" },
+        "last_verified": { "$ref": "#/$defs/date" },
+        "notes": {
+          "type": "string",
+          "maxLength": 500
+        }
+      }
+    }
+  }
+}
