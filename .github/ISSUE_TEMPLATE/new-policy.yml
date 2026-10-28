@@ -1,0 +1,58 @@
+name: New policy
+description: Add a project's AI contribution policy to the dataset.
+title: "Add policy: <project>"
+labels: ["new-policy"]
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Project name
+      placeholder: Kubernetes
+    validations:
+      required: true
+  - type: input
+    id: repo
+    attributes:
+      label: Repository
+      description: owner/name on GitHub, or host/path for other forges.
+      placeholder: kubernetes/kubernetes
+    validations:
+      required: true
+  - type: dropdown
+    id: stance
+    attributes:
+      label: Stance
+      options:
+        - ban
+        - restricted
+        - disclose-required
+        - disclose-encouraged
+        - neutral
+        - encouraged
+        - no-policy
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: Link to the primary source (CONTRIBUTING, AI_POLICY.md, AGENTS.md, governance vote).
+    validations:
+      required: true
+  - type: textarea
+    id: quote
+    attributes:
+      label: Key quote
+      description: The most important sentence, copied exactly, 300 characters or fewer.
+    validations:
+      required: true
+  - type: input
+    id: disclosure
+    attributes:
+      label: Disclosure format
+      placeholder: "Assisted-by: commit trailer"
+  - type: textarea
+    id: details
+    attributes:
+      label: Other details
+      description: Agents allowed, co-author trailer rules, gates such as assignment or labels, sanctions.

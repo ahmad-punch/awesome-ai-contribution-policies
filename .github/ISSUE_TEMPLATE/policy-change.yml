@@ -1,0 +1,32 @@
+name: Policy change or correction
+description: Report that an entry is wrong, outdated or has a dead link.
+title: "Update policy: <repo>"
+labels: ["policy-change"]
+body:
+  - type: input
+    id: repo
+    attributes:
+      label: Repository
+      description: The repo value of the entry to change.
+      placeholder: rust-lang/rust
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: What changed
+      description: Which fields are wrong and what they should be.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: Link showing the current policy.
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date the policy changed (if known)
+      placeholder: 2026-10-01
